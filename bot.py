@@ -25,8 +25,8 @@ class ModBot(commands.Bot):
 
     async def setup_hook(self):
         await self.db.connect()
-await self.load_extension("logs")
-await self.load_extension("moderation")
+        await self.load_extension("logs")
+        await self.load_extension("moderation")
 
         dev_guild = os.getenv("DEV_GUILD_ID")
         if dev_guild:
