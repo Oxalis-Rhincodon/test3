@@ -17,8 +17,8 @@ log = logging.getLogger("modbot")
 class ModBot(commands.Bot):
     def __init__(self):
         intents = discord.Intents.default()
-        intents.members = True          # privileged: enable in the developer portal
-        intents.message_content = True  # privileged: enable in the developer portal
+        intents.members = True          
+        intents.message_content = True 
         super().__init__(command_prefix=commands.when_mentioned, intents=intents, help_command=None)
         self.db = Database()
         self.tree.on_error = self.on_tree_error
@@ -30,12 +30,12 @@ class ModBot(commands.Bot):
 
         dev_guild = os.getenv("DEV_GUILD_ID")
         if dev_guild:
-            # Guild sync is instant, handy while developing.
+            
             guild = discord.Object(id=int(dev_guild))
             self.tree.copy_global_to(guild=guild)
             await self.tree.sync(guild=guild)
         else:
-            # Global sync can take a little while to show up in Discord.
+            
             await self.tree.sync()
 
     async def close(self):
